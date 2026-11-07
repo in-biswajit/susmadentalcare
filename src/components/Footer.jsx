@@ -7,7 +7,7 @@ import { useLang } from '../i18n'
 export default function Footer() {
   const { t } = useLang()
   const f = t.footer
-  const links = t.nav.links.slice(0, 4)
+  const links = t.nav.links.slice(0, 5)
   return (
     <>
       <footer className="footer">

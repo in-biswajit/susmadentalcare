@@ -5,6 +5,7 @@ import About from './components/About'
 import Services from './components/Services'
 import BeforeAfter from './components/BeforeAfter'
 import Process from './components/Process'
+import Gallery from './components/Gallery'
 import Testimonials from './components/Testimonials'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
@@ -27,6 +28,7 @@ export default function App() {
         <Services />
         <BeforeAfter />
         <Process />
+        <Gallery />
         <Testimonials />
         <Faq />
         <Contact />

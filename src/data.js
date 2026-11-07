@@ -13,6 +13,9 @@ export const clinic = {
   whatsapp: '917974090543', // country code + number, no "+"
   email: '', // TODO: add clinic email (hidden on the site while empty)
   mapEmbed: 'https://www.google.com/maps?q=Susma+Dental+Care,+Junagarh,+Kalahandi,+Odisha+766014&output=embed',
+  // Gallery photos: put files in /public/gallery and list them here, in the
+  // same order as the captions in content.js. '' shows a styled placeholder.
+  gallery: ['', '', '', '', '', ''], // TODO: e.g. '/gallery/reception.jpg'
   social: {
     instagram: 'https://www.instagram.com/susma_dentalcare/',
     facebook: 'https://www.facebook.com/profile.php?id=61591864407482',

@@ -28,6 +28,7 @@ const en = {
       { href: '#about', label: 'About' },
       { href: '#services', label: 'Treatments' },
       { href: '#results', label: 'Results' },
+      { href: '#gallery', label: 'Gallery' },
       { href: '#reviews', label: 'Reviews' },
       { href: '#contact', label: 'Contact' },
     ],
@@ -98,6 +99,18 @@ const en = {
       { title: 'Treat', desc: 'Painless, precise treatment with sterilised, modern equipment.' },
       { title: 'Smile', desc: 'Follow-ups and a long-term care plan to keep your smile healthy.' },
     ],
+  },
+
+  gallery: {
+    kicker: 'Gallery',
+    title: 'A look *inside our clinic.*',
+    sub: 'A clean, calm space in Junagarh, designed to make every visit comfortable.',
+    items: ['Reception', 'Treatment room', 'Modern equipment', 'Our team', 'Happy smiles', 'Clinic front'],
+    soon: 'Photo coming soon',
+    more: 'See more on Instagram',
+    close: 'Close',
+    prev: 'Previous photo',
+    next: 'Next photo',
   },
 
   reviews: {
@@ -181,6 +194,7 @@ const or = {
       { href: '#about', label: 'ଆମ ବିଷୟରେ' },
       { href: '#services', label: 'ଚିକିତ୍ସା' },
       { href: '#results', label: 'ଫଳାଫଳ' },
+      { href: '#gallery', label: 'ଗ୍ୟାଲେରୀ' },
       { href: '#reviews', label: 'ସମୀକ୍ଷା' },
       { href: '#contact', label: 'ଯୋଗାଯୋଗ' },
     ],
@@ -251,6 +265,18 @@ const or = {
       { title: 'ଚିକିତ୍ସା', desc: 'ଜୀବାଣୁମୁକ୍ତ, ଆଧୁନିକ ଯନ୍ତ୍ରରେ ଯନ୍ତ୍ରଣାହୀନ ଓ ସଠିକ୍ ଚିକିତ୍ସା।' },
       { title: 'ହସନ୍ତୁ', desc: 'ଫଲୋ-ଅପ୍ ଓ ଦୀର୍ଘକାଳୀନ ଯତ୍ନ ଯୋଜନା, ଯେପରି ହସ ସବୁଦିନ ସୁସ୍ଥ ରହେ।' },
     ],
+  },
+
+  gallery: {
+    kicker: 'ଗ୍ୟାଲେରୀ',
+    title: 'ଆମ କ୍ଲିନିକ୍‌ର *ଏକ ଝଲକ।*',
+    sub: 'ଜୁନାଗଡ଼ରେ ଏକ ପରିଷ୍କାର, ଶାନ୍ତ ସ୍ଥାନ, ଯେଉଁଠି ପ୍ରତ୍ୟେକ ଭିଜିଟ୍ ଆରାମଦାୟକ।',
+    items: ['ଅଭ୍ୟର୍ଥନା କକ୍ଷ', 'ଚିକିତ୍ସା କକ୍ଷ', 'ଆଧୁନିକ ଯନ୍ତ୍ରପାତି', 'ଆମ ଟିମ୍', 'ଖୁସି ହସ', 'କ୍ଲିନିକ୍ ସାମ୍ନା'],
+    soon: 'ଫଟୋ ଶୀଘ୍ର ଆସୁଛି',
+    more: 'Instagram ରେ ଆହୁରି ଦେଖନ୍ତୁ',
+    close: 'ବନ୍ଦ କରନ୍ତୁ',
+    prev: 'ପୂର୍ବ ଫଟୋ',
+    next: 'ପରବର୍ତ୍ତୀ ଫଟୋ',
   },
 
   reviews: {
