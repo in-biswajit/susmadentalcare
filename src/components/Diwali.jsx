@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Icon from './Icon'
-import { Kumbha, palette } from './Motifs'
+import { Kumbha } from './Motifs'
 import { ease } from './Reveal'
-import { useLang } from '../i18n'
+import { content } from '../content'
 
 // =========================================================
 //  Diwali decorations: jhalar lights, light fireworks behind
@@ -179,25 +179,72 @@ export function Jhalar({ className = '' }) {
   )
 }
 
-// ---------- Greeting popup ----------
+// ---------- Greeting popup (always in Odia) ----------
 function Diya({ size = 40 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true" className="diya">
-      <circle cx="20" cy="15" r="13" fill="#ffd36b" opacity=".25" />
       <path className="diya-flame" d="M20 4c3 5 5 8 5 11a5 5 0 0 1-10 0c0-3 2-6 5-11z" fill="#ffb547" />
       <path d="M20 10c1.4 2.6 2.4 4.1 2.4 5.6a2.4 2.4 0 0 1-4.8 0c0-1.5 1-3 2.4-5.6z" fill="#fff3c4" />
-      <path d="M5 24h30c-1.5 7-7.5 11-15 11S6.5 31 5 24z" fill="#a7322a" />
-      <path d="M8 24h24c-.6 2.2-2 3.5-4 4.2H12c-2-.7-3.4-2-4-4.2z" fill="#e39b36" />
-      <circle cx="14" cy="30" r="1.2" fill="#ffd36b" />
-      <circle cx="20" cy="31" r="1.2" fill="#ffd36b" />
-      <circle cx="26" cy="30" r="1.2" fill="#ffd36b" />
+      <path d="M5 24h30c-1.5 7-7.5 11-15 11S6.5 31 5 24z" fill="#b8402f" />
+      <path d="M8 24h24c-.6 2.2-2 3.5-4 4.2H12c-2-.7-3.4-2-4-4.2z" fill="#f3c969" />
+      <circle cx="14" cy="30" r="1.2" fill="#ffe08a" />
+      <circle cx="20" cy="31" r="1.2" fill="#ffe08a" />
+      <circle cx="26" cy="30" r="1.2" fill="#ffe08a" />
+    </svg>
+  )
+}
+
+// Marigold (genda) toran with mango leaves.
+function Toran() {
+  const W = 400
+  const scallops = 4
+  const sw = W / scallops
+  const flowers = []
+  for (let s = 0; s < scallops; s++) {
+    for (let i = 1; i < 8; i++) {
+      const t = i / 8
+      flowers.push({ x: s * sw + sw * t, y: 6 + 36 * t * (1 - t), c: i % 2 ? '#ff9f1c' : '#ffcf3f' })
+    }
+  }
+  return (
+    <svg className="dw-toran" viewBox={`0 0 ${W} 40`} aria-hidden="true">
+      {flowers.map((f, i) => (
+        <g key={i}>
+          <circle cx={f.x} cy={f.y} r="5.4" fill={f.c} />
+          <circle cx={f.x} cy={f.y} r="3" fill="none" stroke="rgba(140,60,0,.35)" strokeWidth="1" strokeDasharray="1.5 1.5" />
+        </g>
+      ))}
+      {Array.from({ length: scallops + 1 }).map((_, s) => (
+        <g key={`l${s}`} transform={`translate(${s * sw} 4)`}>
+          <path d="M0 0c-7 6-8 16-3 24 4-7 5-16 3-24z" fill="#2f8f4e" />
+          <path d="M0 0c7 6 8 16 3 24-4-7-5-16-3-24z" fill="#3fae5f" />
+          <circle r="4.5" fill="#ffcf3f" />
+        </g>
+      ))}
+    </svg>
+  )
+}
+
+function Rangoli() {
+  return (
+    <svg className="dw-rangoli" viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="none" stroke="#f3c969">
+        <circle cx="100" cy="100" r="92" strokeWidth="1" strokeDasharray="2 5" />
+        <circle cx="100" cy="100" r="78" strokeWidth="1.2" />
+        <circle cx="100" cy="100" r="30" strokeWidth="1.2" />
+        {Array.from({ length: 12 }).map((_, i) => (
+          <ellipse key={i} cx="100" cy="52" rx="10" ry="24" strokeWidth="1.2" transform={`rotate(${i * 30} 100 100)`} />
+        ))}
+        {Array.from({ length: 24 }).map((_, i) => (
+          <circle key={`d${i}`} cx="100" cy="14" r="2" fill="#f3c969" stroke="none" transform={`rotate(${i * 15} 100 100)`} />
+        ))}
+      </g>
     </svg>
   )
 }
 
 function Greeting() {
-  const { t } = useLang()
-  const d = t.diwali
+  const d = content.or.diwali // greeting is always in Odia
   const [open, setOpen] = useState(false)
 
   // Shown on every page visit; any click/tap anywhere closes it.
@@ -225,28 +272,43 @@ function Greeting() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
           onClick={() => setOpen(false)}
         >
           <motion.div
             className="dw-pop"
+            lang="or"
             role="dialog"
             aria-modal="true"
             aria-label={d.title}
-            initial={{ opacity: 0, y: 30, scale: 0.92 }}
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.6, ease }}
+            exit={{ opacity: 0, y: 24, scale: 0.95 }}
+            transition={{ duration: 0.7, ease }}
           >
-            <button className="dw-close" aria-label={d.close}>
-              <Icon name="close" size={18} stroke={2} />
-            </button>
-            <div className="dw-diyas"><Diya size={36} /><Diya size={48} /><Diya size={36} /></div>
-            <h2 className="dw-title">{d.title}</h2>
-            <p className="dw-sub">{d.sub}</p>
-            <p className="dw-sign">{d.sign}</p>
-            <button className="btn btn-coral dw-ok">{d.ok}</button>
             <span className="dw-timer" />
-            <div className="dw-border"><Kumbha fill={palette.teal} inner={palette.sindoor} dot={palette.haldi} /></div>
+            <Toran />
+            {['s1', 's2', 's3', 's4', 's5', 's6'].map((c) => <span key={c} className={`dw-star ${c}`} />)}
+            <button className="dw-close" aria-label={d.close}><Icon name="close" size={16} stroke={2} /></button>
+
+            <div className="dw-head">
+              <Rangoli />
+              <div className="dw-diyas">
+                <Diya size={34} /><Diya size={46} /><Diya size={34} />
+              </div>
+              <span className="dw-kicker">{d.kicker}</span>
+              <h2 className="dw-title">{d.title}</h2>
+            </div>
+
+            <p className="dw-sub">{d.sub}</p>
+            <p className="dw-sub2">{d.sub2}</p>
+            <div className="dw-orn" aria-hidden="true"><i /><b /><i /></div>
+            <p className="dw-sign">{d.sign}</p>
+
+            <button className="dw-ok">{d.ok}</button>
+            <small className="dw-hint">{d.hint}</small>
+
+            <div className="dw-border"><Kumbha fill="#f3c969" inner="#b8402f" dot="#0e2a2b" /></div>
           </motion.div>
         </motion.div>
       )}
