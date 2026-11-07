@@ -38,11 +38,11 @@ const en = {
 
   hero: {
     greet: 'Juhar!',
-    pill: 'Now accepting new patients',
+    pill: 'Dental clinic in Junagarh, Kalahandi',
     before: 'Smiles,',
     words: ['crafted', 'restored', 'perfected', 'protected'],
     after: 'with gentle care.',
-    lead: 'A calm, modern dental clinic where painless treatment meets honest advice. For you, your parents and your little ones.',
+    lead: 'A calm, modern dental clinic in Junagarh where painless treatment meets honest advice. For you, your parents and your little ones.',
     cta: 'Book appointment',
     explore: 'Explore treatments',
     loved: `Loved by ${clinic.patients.toLocaleString('en-IN')}+ patients`,
@@ -56,7 +56,7 @@ const en = {
     kicker: 'About the doctor',
     title: 'Dentistry that feels like *care,* not a chore.',
     lead: (doc, n) => `Hi, I'm ${doc}. For over ${n} years, I've helped people who were nervous, embarrassed or simply too busy finally fall in love with their smile again.`,
-    body: (name) => `Every plan at ${name} starts with listening. No upselling, no rush, just honest advice, gentle hands and technology that makes treatment faster and virtually painless.`,
+    body: (name) => `Every plan at ${name} starts with listening. No upselling, no rush, just honest advice, gentle hands and technology that makes treatment faster and virtually painless. We proudly serve families across Junagarh, Bhawanipatna and all of Kalahandi.`,
     quote: '“A healthy smile changes how you walk into a room. That\'s what we really treat.”',
     photo: 'Doctor portrait',
   },
@@ -66,7 +66,7 @@ const en = {
   services: {
     kicker: 'Treatments',
     title: 'Everything your smile needs, *under one roof.*',
-    sub: 'From a quick cleaning to a full smile makeover, every treatment is planned around your comfort, your budget and your goals.',
+    sub: 'From a quick cleaning to a full smile makeover, every treatment at our Junagarh clinic is planned around your comfort, your budget and your goals.',
     items: withIcons([
       { title: 'Smile Makeover', desc: 'Veneers, contouring and whitening, designed around your face, so the result looks naturally you.' },
       { title: 'Painless Root Canal', desc: 'Single-sitting rotary RCT with zero fuss.' },
@@ -123,13 +123,14 @@ const en = {
       { q: 'Do you treat children?', a: 'Yes! We love little patients. Our approach is gentle, playful and focused on building good habits early.' },
       { q: 'Do you offer EMI or payment plans?', a: 'Yes, for treatments like implants, braces and smile makeovers we offer easy, transparent EMI options.' },
       { q: 'Do I need to book in advance?', a: 'Walk-ins are welcome, but booking via WhatsApp or phone means little to no waiting time.' },
+      { q: 'Where is Susma Dental Care in Junagarh?', a: 'We are at Susma Nivas, in front of Sunday Market, beside ICICI Bank, Junagarh, Kalahandi, Odisha 766014. Easy to reach from Bhawanipatna, Dharamgarh and villages across Kalahandi.' },
     ],
   },
 
   contact: {
     kicker: 'Book a visit',
     title: 'Ready for your *best smile?*',
-    sub: "Send us your details and we'll confirm your slot on WhatsApp within minutes.",
+    sub: "Visit our dental clinic in Junagarh, Kalahandi. Send us your details and we'll confirm your slot on WhatsApp within minutes.",
     call: 'Call us',
     email: 'Email',
     visit: 'Visit',
@@ -190,11 +191,11 @@ const or = {
 
   hero: {
     greet: 'ଜୁହାର!',
-    pill: 'ନୂଆ ରୋଗୀଙ୍କ ପାଇଁ ଆପଏଣ୍ଟମେଣ୍ଟ ଖୋଲା ଅଛି',
+    pill: 'ଜୁନାଗଡ଼, କଳାହାଣ୍ଡିର ଦନ୍ତ କ୍ଲିନିକ୍',
     before: 'ଆପଣଙ୍କ ହସକୁ',
     words: ['ଝଲସାଉ', 'ସଜାଡ଼ୁ', 'ଫେରାଉ', 'ସୁରକ୍ଷିତ ରଖୁ'],
     after: 'କୋମଳ ଯତ୍ନରେ।',
-    lead: 'ଏକ ଶାନ୍ତ, ଆଧୁନିକ ଡେଣ୍ଟାଲ କ୍ଲିନିକ୍, ଯେଉଁଠି ଯନ୍ତ୍ରଣାହୀନ ଚିକିତ୍ସା ସହିତ ମିଳେ ସଚ୍ଚୋଟ ପରାମର୍ଶ। ଆପଣ, ଆପଣଙ୍କ ବାପାମାଆ ଓ ଛୋଟ ପିଲାମାନଙ୍କ ପାଇଁ।',
+    lead: 'ଜୁନାଗଡ଼ରେ ଏକ ଶାନ୍ତ, ଆଧୁନିକ ଡେଣ୍ଟାଲ କ୍ଲିନିକ୍, ଯେଉଁଠି ଯନ୍ତ୍ରଣାହୀନ ଚିକିତ୍ସା ସହିତ ମିଳେ ସଚ୍ଚୋଟ ପରାମର୍ଶ। ଆପଣ, ଆପଣଙ୍କ ବାପାମାଆ ଓ ଛୋଟ ପିଲାମାନଙ୍କ ପାଇଁ।',
     cta: 'ଆପଏଣ୍ଟମେଣ୍ଟ ବୁକ୍ କରନ୍ତୁ',
     explore: 'ଚିକିତ୍ସା ଦେଖନ୍ତୁ',
     loved: `${clinic.patients.toLocaleString('en-IN')}+ ରୋଗୀଙ୍କ ଭରସା`,
@@ -208,7 +209,7 @@ const or = {
     kicker: 'ଡାକ୍ତରଙ୍କ ବିଷୟରେ',
     title: 'ଦାନ୍ତ ଚିକିତ୍ସା, ଯାହା ଡର ନୁହେଁ, *ଯତ୍ନ* ଭଳି ଲାଗେ।',
     lead: (doc, n) => `ନମସ୍କାର, ମୁଁ ${doc}। ${n} ବର୍ଷରୁ ଅଧିକ ସମୟ ଧରି ମୁଁ ଡରୁଥିବା, ସଂକୋଚ କରୁଥିବା କିମ୍ବା ବ୍ୟସ୍ତ ଲୋକମାନଙ୍କୁ ପୁଣି ଥରେ ନିଜ ହସକୁ ଭଲ ପାଇବାରେ ସାହାଯ୍ୟ କରିଆସୁଛି।`,
-    body: (name) => `${name}ରେ ପ୍ରତ୍ୟେକ ଚିକିତ୍ସା ଯୋଜନା ଆପଣଙ୍କ କଥା ଶୁଣିବାରୁ ଆରମ୍ଭ ହୁଏ। ଅନାବଶ୍ୟକ ଚିକିତ୍ସା ନାହିଁ, ତରବର ନାହିଁ, କେବଳ ସଚ୍ଚୋଟ ପରାମର୍ଶ, କୋମଳ ହାତ ଓ ଆଧୁନିକ ପ୍ରଯୁକ୍ତି, ଯାହା ଚିକିତ୍ସାକୁ ଶୀଘ୍ର ଓ ପ୍ରାୟ ଯନ୍ତ୍ରଣାହୀନ କରେ।`,
+    body: (name) => `${name}ରେ ପ୍ରତ୍ୟେକ ଚିକିତ୍ସା ଯୋଜନା ଆପଣଙ୍କ କଥା ଶୁଣିବାରୁ ଆରମ୍ଭ ହୁଏ। ଅନାବଶ୍ୟକ ଚିକିତ୍ସା ନାହିଁ, ତରବର ନାହିଁ, କେବଳ ସଚ୍ଚୋଟ ପରାମର୍ଶ, କୋମଳ ହାତ ଓ ଆଧୁନିକ ପ୍ରଯୁକ୍ତି, ଯାହା ଚିକିତ୍ସାକୁ ଶୀଘ୍ର ଓ ପ୍ରାୟ ଯନ୍ତ୍ରଣାହୀନ କରେ। ଜୁନାଗଡ଼, ଭବାନୀପାଟଣା ଓ ସମଗ୍ର କଳାହାଣ୍ଡିର ପରିବାରଙ୍କୁ ସେବା ଦେବାରେ ଆମେ ଗର୍ବିତ।`,
     quote: '“ସୁସ୍ଥ ହସ ଆପଣଙ୍କ ଆତ୍ମବିଶ୍ୱାସକୁ ବଦଳାଇ ଦିଏ। ଆମେ ପ୍ରକୃତରେ ସେଇଟିର ହିଁ ଚିକିତ୍ସା କରୁ।”',
     photo: 'ଡାକ୍ତରଙ୍କ ଫଟୋ',
   },
@@ -218,7 +219,7 @@ const or = {
   services: {
     kicker: 'ଚିକିତ୍ସା',
     title: 'ଆପଣଙ୍କ ହସ ପାଇଁ ସବୁକିଛି, *ଗୋଟିଏ ଛାତ ତଳେ।*',
-    sub: 'ସାଧାରଣ ସଫେଇଠାରୁ ସମ୍ପୂର୍ଣ୍ଣ ସ୍ମାଇଲ୍ ମେକଓଭର ପର୍ଯ୍ୟନ୍ତ, ପ୍ରତ୍ୟେକ ଚିକିତ୍ସା ଆପଣଙ୍କ ଆରାମ, ବଜେଟ୍ ଓ ଲକ୍ଷ୍ୟକୁ ଧ୍ୟାନରେ ରଖି ଯୋଜନା କରାଯାଏ।',
+    sub: 'ସାଧାରଣ ସଫେଇଠାରୁ ସମ୍ପୂର୍ଣ୍ଣ ସ୍ମାଇଲ୍ ମେକଓଭର ପର୍ଯ୍ୟନ୍ତ, ଆମ ଜୁନାଗଡ଼ କ୍ଲିନିକ୍‌ରେ ପ୍ରତ୍ୟେକ ଚିକିତ୍ସା ଆପଣଙ୍କ ଆରାମ, ବଜେଟ୍ ଓ ଲକ୍ଷ୍ୟକୁ ଧ୍ୟାନରେ ରଖି ଯୋଜନା କରାଯାଏ।',
     items: withIcons([
       { title: 'ସ୍ମାଇଲ୍ ମେକଓଭର', desc: 'ଭେନିୟର୍, କଣ୍ଟୁରିଂ ଓ ହ୍ୱାଇଟେନିଂ, ଆପଣଙ୍କ ଚେହେରା ଅନୁସାରେ ଡିଜାଇନ୍, ଯେପରି ଫଳାଫଳ ସ୍ୱାଭାବିକ ଦେଖାଯାଏ।' },
       { title: 'ଯନ୍ତ୍ରଣାହୀନ ରୁଟ୍ କେନାଲ୍', desc: 'ଆଧୁନିକ ରୋଟାରି ଯନ୍ତ୍ରରେ ଗୋଟିଏ ସିଟିଂରେ RCT।' },
@@ -275,13 +276,14 @@ const or = {
       { q: 'ଆପଣ ପିଲାମାନଙ୍କର ଚିକିତ୍ସା କରନ୍ତି କି?', a: 'ହଁ! ଛୋଟ ରୋଗୀମାନଙ୍କୁ ଆମେ ବହୁତ ଭଲ ପାଉ। ଆମର ଢଙ୍ଗ କୋମଳ ଓ ଖେଳାଳି, ଯାହା ପିଲାଙ୍କଠାରେ ଆରମ୍ଭରୁ ଭଲ ଅଭ୍ୟାସ ଗଢ଼େ।' },
       { q: 'EMI କିମ୍ବା କିସ୍ତିରେ ଦେୟ ସୁବିଧା ଅଛି କି?', a: 'ହଁ, ଇମ୍ପ୍ଲାଣ୍ଟ, ବ୍ରେସେସ୍ ଓ ସ୍ମାଇଲ୍ ମେକଓଭର ଭଳି ଚିକିତ୍ସା ପାଇଁ ସହଜ ଓ ସ୍ପଷ୍ଟ EMI ସୁବିଧା ଅଛି।' },
       { q: 'ଆଗରୁ ବୁକ୍ କରିବା ଦରକାର କି?', a: 'ସିଧା ଆସିପାରିବେ, କିନ୍ତୁ WhatsApp କିମ୍ବା ଫୋନରେ ବୁକ୍ କଲେ ପ୍ରାୟ ଅପେକ୍ଷା କରିବାକୁ ପଡ଼ିବ ନାହିଁ।' },
+      { q: 'ଜୁନାଗଡ଼ରେ ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର କେଉଁଠି ଅଛି?', a: 'ଆମେ ସୁଷମା ନିବାସ, ସଣ୍ଡେ ମାର୍କେଟ ସାମ୍ନାରେ, ICICI ବ୍ୟାଙ୍କ ପାଖରେ, ଜୁନାଗଡ଼, କଳାହାଣ୍ଡି, ଓଡ଼ିଶା 766014ରେ ଅଛୁ। ଭବାନୀପାଟଣା, ଧରମଗଡ଼ ଓ କଳାହାଣ୍ଡିର ଗାଁଗୁଡ଼ିକରୁ ସହଜରେ ଆସିପାରିବେ।' },
     ],
   },
 
   contact: {
     kicker: 'ଭିଜିଟ୍ ବୁକ୍ କରନ୍ତୁ',
     title: 'ଆପଣଙ୍କ *ସବୁଠୁ ସୁନ୍ଦର ହସ* ପାଇଁ ପ୍ରସ୍ତୁତ କି?',
-    sub: 'ଆପଣଙ୍କ ବିବରଣୀ ପଠାନ୍ତୁ, ଆମେ କିଛି ମିନିଟ୍‌ରେ WhatsApp ରେ ଆପଣଙ୍କ ସମୟ ନିଶ୍ଚିତ କରିବୁ।',
+    sub: 'ଜୁନାଗଡ଼, କଳାହାଣ୍ଡିରେ ଆମ ଦନ୍ତ କ୍ଲିନିକ୍‌କୁ ଆସନ୍ତୁ। ଆପଣଙ୍କ ବିବରଣୀ ପଠାନ୍ତୁ, ଆମେ କିଛି ମିନିଟ୍‌ରେ WhatsApp ରେ ଆପଣଙ୍କ ସମୟ ନିଶ୍ଚିତ କରିବୁ।',
     call: 'ଫୋନ୍ କରନ୍ତୁ',
     email: 'ଇମେଲ୍',
     visit: 'ଠିକଣା',
