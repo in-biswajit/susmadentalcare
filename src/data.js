@@ -12,7 +12,7 @@ export const clinic = {
   phone: '+91 79740 90543',
   whatsapp: '917974090543', // country code + number, no "+"
   email: '', // TODO: add clinic email (hidden on the site while empty)
-  mapEmbed: 'https://www.google.com/maps?q=Junagarh,+Kalahandi,+Odisha&output=embed', // TODO: exact clinic pin link
+  mapEmbed: 'https://www.google.com/maps?q=Susma+Dental+Care,+Junagarh,+Kalahandi,+Odisha+766014&output=embed',
   social: {
     instagram: 'https://www.instagram.com/susma_dentalcare/',
     facebook: 'https://www.facebook.com/profile.php?id=61591864407482',

@@ -17,7 +17,7 @@ const en = {
   doctor: 'Dr. Snigdha Singh',
   role: 'B.D.S · Dental Surgeon',
   qualification: ['B.D.S', 'Dental Surgeon'],
-  address: 'Junagarh, Kalahandi, Odisha',
+  address: 'Susma Nivas, in front of Sunday Market, beside ICICI Bank, Junagarh, Kalahandi, Odisha 766014',
   timings: [
     { day: 'Mon – Sat', time: '10 AM – 2 PM · 5 PM – 9 PM' }, // TODO
     { day: 'Sunday', time: 'By appointment' },
@@ -169,7 +169,7 @@ const or = {
   doctor: 'ଡାଃ ସ୍ନିଗ୍ଧା ସିଂହ',
   role: 'B.D.S · ଦନ୍ତ ଚିକିତ୍ସକ',
   qualification: ['B.D.S', 'ଦନ୍ତ ଚିକିତ୍ସକ'],
-  address: 'ଜୁନାଗଡ଼, କଳାହାଣ୍ଡି, ଓଡ଼ିଶା',
+  address: 'ସୁଷମା ନିବାସ, ସଣ୍ଡେ ମାର୍କେଟ ସାମ୍ନାରେ, ICICI ବ୍ୟାଙ୍କ ପାଖରେ, ଜୁନାଗଡ଼, କଳାହାଣ୍ଡି, ଓଡ଼ିଶା 766014',
   timings: [
     { day: 'ସୋମ – ଶନି', time: 'ସକାଳ 10 – ଦିନ 2 · ସନ୍ଧ୍ୟା 5 – ରାତି 9' }, // TODO
     { day: 'ରବିବାର', time: 'ଆପଏଣ୍ଟମେଣ୍ଟ ଅନୁସାରେ' },
