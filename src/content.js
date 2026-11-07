@@ -10,8 +10,8 @@ const withIcons = (items) => items.map((s, i) => ({ ...s, icon: icons[i], featur
 const en = {
   langName: 'English',
   meta: {
-    title: 'Susma Dental Care · Gentle, Modern Dentistry',
-    description: 'Susma Dental Care - Gentle, modern dental care for the whole family.',
+    title: 'Susma Dental Care | Dentist in Junagarh, Kalahandi, Odisha',
+    description: 'Susma Dental Care, Junagarh (Kalahandi, Odisha) - Dr. Snigdha Singh (B.D.S). Painless root canal, implants, braces, teeth whitening, cleaning and kids dentistry. Call +91 79740 90543.',
   },
   name: 'Susma Dental Care',
   doctor: 'Dr. Snigdha Singh',
@@ -162,8 +162,8 @@ const en = {
 const or = {
   langName: 'ଓଡ଼ିଆ',
   meta: {
-    title: 'ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର · କୋମଳ, ଆଧୁନିକ ଦନ୍ତ ଚିକିତ୍ସା',
-    description: 'ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର - ସମଗ୍ର ପରିବାର ପାଇଁ କୋମଳ, ଆଧୁନିକ ଦନ୍ତ ଚିକିତ୍ସା।',
+    title: 'ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର | ଜୁନାଗଡ଼, କଳାହାଣ୍ଡିରେ ଦନ୍ତ ଚିକିତ୍ସା',
+    description: 'ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର, ଜୁନାଗଡ଼ (କଳାହାଣ୍ଡି, ଓଡ଼ିଶା) - ଡାଃ ସ୍ନିଗ୍ଧା ସିଂହ (B.D.S)। ଯନ୍ତ୍ରଣାହୀନ ରୁଟ୍ କେନାଲ୍, ଇମ୍ପ୍ଲାଣ୍ଟ, ବ୍ରେସେସ୍, ଦାନ୍ତ ଧଳା କରିବା ଓ ପିଲାଙ୍କ ଦନ୍ତ ଚିକିତ୍ସା। ଫୋନ୍: +91 79740 90543।',
   },
   name: 'ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର',
   doctor: 'ଡାଃ ସ୍ନିଗ୍ଧା ସିଂହ',

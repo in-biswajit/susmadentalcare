@@ -30,6 +30,10 @@ export function LangProvider({ children }) {
     document.documentElement.lang = lang
     document.title = t.meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', t.meta.description)
+    // Each language version is its own page for search engines.
+    const url = lang === 'or' ? 'https://www.susmadentalcare.com/?lang=or' : 'https://www.susmadentalcare.com/'
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url)
   }, [lang, t])
 
   return <LangContext.Provider value={{ lang, setLang, t }}>{children}</LangContext.Provider>
