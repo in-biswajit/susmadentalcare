@@ -90,7 +90,8 @@ function Fireworks({ layer }) {
       lastFrame = now
       if (now >= nextLaunch && !document.hidden) {
         launch()
-        nextLaunch = now + (back ? rand(1500, 2800) * (mobile() ? 1.4 : 1) : rand(6000, 9000))
+        if (back && !mobile() && Math.random() < 0.3) launch()
+        nextLaunch = now + (back ? rand(1000, 1900) * (mobile() ? 1.3 : 1) : rand(3500, 6000))
       }
       ctx.clearRect(0, 0, w, h)
 
@@ -199,26 +200,15 @@ function Greeting() {
   const d = t.diwali
   const [open, setOpen] = useState(false)
 
+  // Shown on every page visit; any click/tap anywhere closes it.
   useEffect(() => {
-    let seen = false
-    try {
-      seen = sessionStorage.getItem('susma-diwali-seen') === '1'
-    } catch {
-      /* ignore */
-    }
-    if (seen) return
-    const show = setTimeout(() => setOpen(true), 1200)
+    const show = setTimeout(() => setOpen(true), 700)
     return () => clearTimeout(show)
   }, [])
 
   useEffect(() => {
     if (!open) return
-    try {
-      sessionStorage.setItem('susma-diwali-seen', '1')
-    } catch {
-      /* ignore */
-    }
-    const auto = setTimeout(() => setOpen(false), 9000)
+    const auto = setTimeout(() => setOpen(false), 6000)
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
     window.addEventListener('keydown', onKey)
     return () => {
@@ -246,16 +236,16 @@ function Greeting() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.6, ease }}
-            onClick={(e) => e.stopPropagation()}
           >
-            <button className="dw-close" onClick={() => setOpen(false)} aria-label={d.close}>
+            <button className="dw-close" aria-label={d.close}>
               <Icon name="close" size={18} stroke={2} />
             </button>
             <div className="dw-diyas"><Diya size={36} /><Diya size={48} /><Diya size={36} /></div>
             <h2 className="dw-title">{d.title}</h2>
             <p className="dw-sub">{d.sub}</p>
             <p className="dw-sign">{d.sign}</p>
-            <button className="btn btn-coral dw-ok" onClick={() => setOpen(false)}>{d.ok}</button>
+            <button className="btn btn-coral dw-ok">{d.ok}</button>
+            <span className="dw-timer" />
             <div className="dw-border"><Kumbha fill={palette.teal} inner={palette.sindoor} dot={palette.haldi} /></div>
           </motion.div>
         </motion.div>
@@ -270,6 +260,7 @@ export default function Diwali() {
   if (!active) return null
   return (
     <>
+      <Jhalar className="jhalar-top" />
       {!reduced && <Fireworks layer="back" />}
       {!reduced && <Fireworks layer="front" />}
       <Greeting />

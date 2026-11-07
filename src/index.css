@@ -727,7 +727,8 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
 /* Jhalar string lights (sit in empty space; never push content) */
 .jhalar { position: absolute; left: 0; right: 0; display: flex; overflow: hidden; pointer-events: none; line-height: 0; z-index: 1; }
 .jhalar svg { flex: none; }
-.jhalar-hero { top: 86px; }
+.jhalar-top { position: fixed; top: 0; z-index: 120; }   /* stays visible while scrolling, hangs over the nav edge */
+.jhalar-top svg { width: 104px; height: 34px; }
 .jhalar-footer { top: -60px; }
 .bulb { animation: bulb 1.8s ease-in-out infinite; animation-delay: var(--d); }
 .bulb-glow { opacity: .28; }
@@ -736,7 +737,7 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
 /* Greeting popup */
 .dw-backdrop {
   position: fixed; inset: 0; z-index: 450; display: grid; place-items: center; padding: 20px;
-  background: rgba(14, 42, 43, .22); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  background: rgba(14, 42, 43, .18); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); cursor: pointer;
 }
 .dw-pop {
   position: relative; width: min(420px, 100%); overflow: hidden; text-align: center;
@@ -763,8 +764,11 @@ html[lang="or"] .dw-title { font-weight: 700; line-height: 1.4; }
 html[lang="or"] .dw-sub { font-weight: 500; }
 
 @media (max-width: 600px) {
-  .jhalar-hero { top: 74px; }
-  .jhalar svg { width: 90px; height: 35px; }
+  .jhalar svg, .jhalar-top svg { width: 84px; height: 28px; }
   .dw-pop { padding: 26px 20px 60px; border-radius: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { .bulb, .diya-flame { animation: none; } }
+/* popup countdown bar (6s auto-hide) */
+.dw-timer { position: absolute; left: 0; top: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--sindoor), var(--haldi)); transform-origin: left; animation: dw-timer 6s linear forwards; }
+@keyframes dw-timer { from { transform: scaleX(1) } to { transform: scaleX(0) } }
+.dw-pop { cursor: pointer; }

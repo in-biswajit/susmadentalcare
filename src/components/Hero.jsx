@@ -3,7 +3,6 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import Icon from './Icon'
 import Tooth3D from './Tooth3D'
 import { IkatField, Kumbha, Phula, palette } from './Motifs'
-import { Jhalar } from './Diwali'
 import { ease } from './Reveal'
 import { clinic } from '../data'
 import { useLang } from '../i18n'
@@ -31,7 +30,6 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="hero-glow g1" />
       <div className="hero-glow g2" />
-      <Jhalar className="jhalar-hero" />
 
       <div className="wrap hero-grid">
         <div className="hero-copy">
