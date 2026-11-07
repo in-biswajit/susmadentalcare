@@ -168,6 +168,13 @@ const en = {
       `Preferred date: ${f.date || 'Any'}\nNote: ${f.message || '-'}`,
   },
 
+  diwali: {
+    title: 'Happy Diwali!',
+    sub: "Enjoy the sweets, we'll take care of your smile.",
+    replay: 'Fireworks',
+    close: 'Close greeting',
+  },
+
   footer: {
     line1: 'Healthy smiles,',
     line2: 'happy lives.',
@@ -338,6 +345,13 @@ const or = {
       `ନମସ୍କାର ${name}, ମୁଁ ଏକ ଆପଏଣ୍ଟମେଣ୍ଟ ବୁକ୍ କରିବାକୁ ଚାହେଁ।\n\n` +
       `ନାମ: ${f.name}\nଫୋନ୍: ${f.phone}\nଚିକିତ୍ସା: ${f.service || 'ସାଧାରଣ ଯାଞ୍ଚ'}\n` +
       `ପସନ୍ଦର ତାରିଖ: ${f.date || 'ଯେକୌଣସି'}\nଟିପ୍ପଣୀ: ${f.message || '-'}`,
+  },
+
+  diwali: {
+    title: 'ଶୁଭ ଦୀପାବଳି!',
+    sub: 'ମିଠା ଖାଆନ୍ତୁ, ଆପଣଙ୍କ ହସର ଯତ୍ନ ଆମେ ନେବୁ।',
+    replay: 'ଆତସବାଜି',
+    close: 'ବନ୍ଦ କରନ୍ତୁ',
   },
 
   footer: {

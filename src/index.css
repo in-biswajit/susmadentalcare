@@ -716,3 +716,45 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
   .gal-ico { width: 42px; height: 42px; }
   .lb-nav { top: auto; bottom: 18px; margin-top: 0; }
 }
+
+/* =========================================================
+   DIWALI (auto-hides after 10 Nov 2026)
+   ========================================================= */
+.fireworks { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 350; pointer-events: none; }
+.diwali-card {
+  position: fixed; left: 0; right: 0; margin-inline: auto; bottom: 24px; z-index: 360; width: fit-content; max-width: min(460px, calc(100% - 200px));
+  display: flex; align-items: center; gap: 14px; padding: 14px 44px 14px 16px; border-radius: 22px;
+  background: linear-gradient(135deg, #2a0f0c, var(--ink) 70%); color: var(--cream);
+  border: 1px solid rgba(227,155,54,.45); box-shadow: 0 20px 50px -12px rgba(0,0,0,.45), 0 0 0 4px rgba(227,155,54,.12);
+}
+.diwali-card::before {
+  content: ''; position: absolute; left: 14px; right: 14px; top: -1px; height: 3px; border-radius: 3px;
+  background: repeating-linear-gradient(90deg, var(--haldi) 0 10px, var(--sindoor) 10px 20px);
+}
+.diwali-diyas { display: flex; align-items: flex-end; flex: none; }
+.diwali-diyas .diya + .diya { margin-left: -6px; }
+.diya-flame { transform-origin: 20px 15px; animation: flicker 1.4s ease-in-out infinite; }
+.diwali-diyas .diya:nth-child(2) .diya-flame { animation-delay: .4s; }
+.diwali-diyas .diya:nth-child(3) .diya-flame { animation-delay: .8s; }
+@keyframes flicker { 0%,100% { transform: scale(1) rotate(-2deg) } 50% { transform: scale(1.12, .92) rotate(3deg) } }
+.diwali-text { display: grid; gap: 2px; min-width: 0; }
+.diwali-text b { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; color: var(--haldi); line-height: 1.2; }
+.diwali-text span { font-size: .85rem; color: rgba(250,246,240,.85); line-height: 1.4; }
+.diwali-replay {
+  flex: none; border: 1px solid rgba(227,155,54,.5); background: rgba(227,155,54,.14); color: var(--cream);
+  border-radius: 999px; padding: 7px 12px; font-size: .8rem; font-weight: 600; cursor: pointer; transition: background .3s;
+}
+.diwali-replay:hover { background: rgba(227,155,54,.3); }
+.diwali-close {
+  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; border: 0;
+  background: rgba(255,255,255,.08); color: var(--cream); display: grid; place-items: center; cursor: pointer;
+}
+.diwali-close:hover { background: rgba(255,255,255,.18); }
+html[lang="or"] .diwali-text b { font-weight: 700; line-height: 1.4; }
+@media (max-width: 600px) {
+  .diwali-card { left: 12px; right: 88px; bottom: 16px; margin-inline: 0; width: auto; max-width: none; flex-wrap: wrap; gap: 10px; padding: 12px 38px 12px 12px; }
+  .diwali-diyas .diya { width: 26px; height: 26px; }
+  .diwali-text b { font-size: 1.1rem; }
+  .diwali-text span { font-size: .78rem; }
+  .diwali-replay { padding: 5px 10px; font-size: .74rem; }
+}
