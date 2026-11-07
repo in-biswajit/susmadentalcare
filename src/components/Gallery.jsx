@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Icon from './Icon'
-import { IkatField } from './Motifs'
 import Reveal, { SplitHeading, ease } from './Reveal'
 import { clinic } from '../data'
 import { useLang } from '../i18n'
@@ -9,9 +8,8 @@ import { useLang } from '../i18n'
 export default function Gallery() {
   const { t } = useLang()
   const g = t.gallery
-  const items = g.items.map((caption, i) => ({ caption, src: clinic.gallery[i] || '' }))
-  const photos = items.map((x, i) => ({ ...x, i })).filter((x) => x.src)
-  const [open, setOpen] = useState(-1) // index into `photos`
+  const photos = clinic.gallery.map((p) => ({ src: p.src, caption: g.captions[p.caption] }))
+  const [open, setOpen] = useState(-1)
 
   const close = useCallback(() => setOpen(-1), [])
   const step = useCallback((d) => setOpen((o) => (o + d + photos.length) % photos.length), [photos.length])
@@ -47,30 +45,19 @@ export default function Gallery() {
         </div>
 
         <div className="gal-grid">
-          {items.map((item, i) => (
+          {photos.map((p, i) => (
             <motion.figure
-              key={i}
-              className={`gal-tile g${i + 1} ${item.src ? 'has-photo' : 'is-empty'}`}
+              key={p.src}
+              className={`gal-tile g${i + 1}`}
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8, ease, delay: (i % 3) * 0.08 }}
+              transition={{ duration: 0.8, ease, delay: (i % 4) * 0.07 }}
             >
-              {item.src ? (
-                <button className="gal-btn" onClick={() => setOpen(photos.findIndex((p) => p.i === i))} aria-label={item.caption}>
-                  <img src={item.src} alt={item.caption} loading="lazy" />
-                  <figcaption>{item.caption}</figcaption>
-                </button>
-              ) : (
-                <div className="gal-empty">
-                  <IkatField color="#ffffff" opacity={0.12} size={56} />
-                  <span className="gal-ico"><Icon name="camera" size={26} stroke={1.5} /></span>
-                  <figcaption>
-                    <b>{item.caption}</b>
-                    <small>{g.soon}</small>
-                  </figcaption>
-                </div>
-              )}
+              <button className="gal-btn" onClick={() => setOpen(i)} aria-label={p.caption}>
+                <img src={p.src} alt={`${p.caption} – ${t.name}`} loading="lazy" decoding="async" />
+                <figcaption>{p.caption}</figcaption>
+              </button>
             </motion.figure>
           ))}
         </div>
@@ -104,15 +91,11 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <img src={current.src} alt={current.caption} />
-              <figcaption>{current.caption}</figcaption>
+              <figcaption>{current.caption} · {open + 1}/{photos.length}</figcaption>
             </motion.figure>
             <button className="lb-close" onClick={close} aria-label={g.close}><Icon name="close" size={24} /></button>
-            {photos.length > 1 && (
-              <>
-                <button className="lb-nav prev" onClick={(e) => { e.stopPropagation(); step(-1) }} aria-label={g.prev}><Icon name="chevL" size={26} stroke={2} /></button>
-                <button className="lb-nav next" onClick={(e) => { e.stopPropagation(); step(1) }} aria-label={g.next}><Icon name="chevR" size={26} stroke={2} /></button>
-              </>
-            )}
+            <button className="lb-nav prev" onClick={(e) => { e.stopPropagation(); step(-1) }} aria-label={g.prev}><Icon name="chevL" size={26} stroke={2} /></button>
+            <button className="lb-nav next" onClick={(e) => { e.stopPropagation(); step(1) }} aria-label={g.next}><Icon name="chevR" size={26} stroke={2} /></button>
           </motion.div>
         )}
       </AnimatePresence>

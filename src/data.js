@@ -13,9 +13,20 @@ export const clinic = {
   whatsapp: '917974090543', // country code + number, no "+"
   email: '', // TODO: add clinic email (hidden on the site while empty)
   mapEmbed: 'https://www.google.com/maps?q=Susma+Dental+Care,+Junagarh,+Kalahandi,+Odisha+766014&output=embed',
-  // Gallery photos: put files in /public/gallery and list them here, in the
-  // same order as the captions in content.js. '' shows a styled placeholder.
-  gallery: ['', '', '', '', '', ''], // TODO: e.g. '/gallery/reception.jpg'
+  // Gallery photos live in /public/gallery. `caption` is a key into
+  // content.js -> gallery.captions. The grid layout is tuned for this order
+  // (tall photos in slots 1, 3, 4 and 7; the big tile is slot 2).
+  gallery: [
+    { src: '/gallery/reception.webp', caption: 'reception' },
+    { src: '/gallery/treatment-1.webp', caption: 'treatment' },
+    { src: '/gallery/treatment-2.webp', caption: 'treatment' },
+    { src: '/gallery/clinic-front.webp', caption: 'front' },
+    { src: '/gallery/equipment.webp', caption: 'equipment' },
+    { src: '/gallery/treatment-3.webp', caption: 'treatment' },
+    { src: '/gallery/patients-1.webp', caption: 'patients' },
+    { src: '/gallery/patients-2.webp', caption: 'patients' },
+    { src: '/gallery/smile.webp', caption: 'smile' },
+  ],
   social: {
     instagram: 'https://www.instagram.com/susma_dentalcare/',
     facebook: 'https://www.facebook.com/profile.php?id=61591864407482',

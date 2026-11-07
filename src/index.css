@@ -652,11 +652,11 @@ main, .footer { position: relative; z-index: 2; }
 /* =========================================================
    GALLERY
    ========================================================= */
-.gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; gap: 16px; }
+.gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 14px; grid-auto-flow: dense; }
 .gal-tile { position: relative; margin: 0; border-radius: 26px; overflow: hidden; }
-.g1 { grid-column: span 2; grid-row: span 2; }
-.g3 { grid-row: span 2; }
-.g5, .g6 { grid-column: span 2; }
+/* 9 photos: tall tiles for portrait shots, one big feature tile */
+.g1, .g3, .g4, .g7 { grid-row: span 2; }
+.g2 { grid-column: span 2; grid-row: span 2; }
 .gal-btn { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; position: relative; }
 .gal-btn img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
 .gal-btn:hover img { transform: scale(1.06); }
@@ -704,16 +704,14 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
 
 @media (max-width: 860px) {
   .gal-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
-  .g1 { grid-column: span 2; grid-row: span 2; }
-  .g3 { grid-row: span 1; }
-  .g5 { grid-column: span 1; }
-  .g6 { grid-column: span 2; }
+  .g1, .g3, .g4, .g7 { grid-row: span 1; }
+  .g2 { grid-column: span 2; grid-row: span 2; }
   .gal-btn figcaption { opacity: 1; transform: none; }
 }
 @media (max-width: 600px) {
   .gal-grid { grid-auto-rows: 150px; gap: 10px; }
   .gal-tile, .gal-btn:focus-visible { border-radius: 18px; }
-  .gal-empty { padding: 16px; }
+  .gal-btn figcaption { left: 8px; bottom: 8px; padding: 3px 10px; font-size: .72rem; }
   .gal-empty b { font-size: 1.05rem; }
   .gal-ico { width: 42px; height: 42px; }
   .lb-nav { top: auto; bottom: 18px; margin-top: 0; }
