@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Icon from './Icon'
+import { Kumbha, palette } from './Motifs'
 import { ease } from './Reveal'
 import { useLang } from '../i18n'
 
-// Festive Diwali greeting + fireworks.
-// Shows automatically until DIWALI_END, then disappears on its own.
-// Add ?diwali=1 to the URL to preview it any time.
+// =========================================================
+//  Diwali decorations: jhalar lights, light fireworks behind
+//  the content, tiny ones at the edges, and a greeting popup.
+//  Everything disappears on its own after DIWALI_END.
+//  Add ?diwali=1 to the URL to preview any time.
+// =========================================================
 const DIWALI_END = new Date('2026-11-10T00:00:00+05:30')
-const COLORS = ['#ffd36b', '#ffa94d', '#ff6b8b', '#9ff5d8', '#ffffff', '#ff5a4e', '#c9a2ff', '#ffe9a8']
+const COLORS = ['#f0a500', '#ff7a2f', '#e8447a', '#1f8a7b', '#8b5cf6', '#d93a2b', '#f7c948']
+const BULBS = ['#ffcc33', '#ff5a4e', '#4fd1a5', '#ff8fb1', '#ffffff', '#ffa94d', '#9ad0ff']
 
 export function isDiwaliTime() {
   try {
@@ -19,11 +24,18 @@ export function isDiwaliTime() {
   return new Date() < DIWALI_END
 }
 
-function Fireworks({ runId, duration = 7000 }) {
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
+const rand = (a, b) => a + Math.random() * (b - a)
+
+// ---------- Fireworks (canvas) ----------
+// layer "back": small bursts behind all content, every few seconds.
+// layer "front": tiny bursts near the screen edges, now and then.
+function Fireworks({ layer }) {
   const ref = useRef(null)
 
   useEffect(() => {
-    if (!runId) return
     const canvas = ref.current
     const ctx = canvas.getContext('2d')
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -40,55 +52,47 @@ function Fireworks({ runId, duration = 7000 }) {
     resize()
     window.addEventListener('resize', resize)
 
+    const back = layer === 'back'
+    const mobile = () => w < 700
     const rockets = []
     const sparks = []
-    const start = performance.now()
-    let lastLaunch = 0
-    let lastFrame = start
+    let nextLaunch = performance.now() + (back ? 600 : 3500)
+    let lastFrame = performance.now()
     let raf = 0
 
     const launch = () => {
-      const x = w * (0.15 + Math.random() * 0.7)
+      let x
+      if (back) x = w * rand(0.06, 0.94)
+      else x = Math.random() < 0.5 ? w * rand(0.03, 0.15) : w * rand(0.85, 0.97)
+      const top = back ? rand(0.12, 0.5) : rand(0.18, 0.4)
       rockets.push({
-        x, y: h, vx: (Math.random() - 0.5) * 1.5,
-        vy: -(h * 0.011 + Math.random() * h * 0.004),
+        x, y: h + 10, vx: rand(-0.6, 0.6), vy: -Math.sqrt(2 * 0.06 * h * (1 - top)),
         color: COLORS[(Math.random() * COLORS.length) | 0],
-        targetY: h * (0.15 + Math.random() * 0.3),
       })
     }
 
     const explode = (r) => {
-      const count = 80 + ((Math.random() * 40) | 0)
-      const power = 2.6 + Math.random() * 2.4
-      const second = Math.random() < 0.4 ? COLORS[(Math.random() * COLORS.length) | 0] : null
+      const small = mobile() || !back
+      const count = back ? (small ? 34 : 50) : 22
+      const power = back ? rand(1.6, small ? 2.4 : 3) : rand(1.1, 1.6)
       for (let i = 0; i < count; i++) {
-        const a = (i / count) * Math.PI * 2
-        const s = power * (0.6 + Math.random() * 0.6)
+        const a = (i / count) * Math.PI * 2 + rand(-0.05, 0.05)
+        const s = power * rand(0.6, 1.1)
         sparks.push({
           x: r.x, y: r.y, px: r.x, py: r.y, vx: Math.cos(a) * s, vy: Math.sin(a) * s,
-          life: 1, decay: 0.008 + Math.random() * 0.01,
-          color: second && i % 2 ? second : Math.random() < 0.15 ? '#ffffff' : r.color,
+          life: 1, decay: rand(0.011, 0.02), color: Math.random() < 0.2 ? '#f7c948' : r.color,
         })
       }
     }
 
     const tick = (now) => {
-      const elapsed = now - start
-      // Time-based motion: same speed on slow and fast devices (k = frames at 60fps).
       const k = Math.min(3, (now - lastFrame) / 16.67)
       lastFrame = now
-      if (elapsed < duration && now - lastLaunch > 380) {
+      if (now >= nextLaunch && !document.hidden) {
         launch()
-        if (Math.random() < 0.35) launch()
-        lastLaunch = now
+        nextLaunch = now + (back ? rand(1500, 2800) * (mobile() ? 1.4 : 1) : rand(6000, 9000))
       }
       ctx.clearRect(0, 0, w, h)
-      // Soft "night sky" so the fireworks glow on the light page.
-      const fadeIn = Math.min(1, elapsed / 700)
-      const fadeOut = elapsed > duration ? Math.max(0, 1 - (elapsed - duration) / 1500) : 1
-      ctx.fillStyle = `rgba(8, 16, 26, ${0.65 * fadeIn * fadeOut})`
-      ctx.fillRect(0, 0, w, h)
-      ctx.globalCompositeOperation = 'lighter'
 
       for (let i = rockets.length - 1; i >= 0; i--) {
         const r = rockets[i]
@@ -97,44 +101,42 @@ function Fireworks({ runId, duration = 7000 }) {
         r.x += r.vx * k
         r.y += r.vy * k
         r.vy += 0.06 * k
+        ctx.globalAlpha = 0.8
         ctx.strokeStyle = r.color
-        ctx.lineWidth = 2.5
+        ctx.lineWidth = 2
         ctx.beginPath()
-        ctx.moveTo(ox - r.vx * 4, oy - r.vy * 4)
+        ctx.moveTo(ox - r.vx * 3, oy - r.vy * 3)
         ctx.lineTo(r.x, r.y)
         ctx.stroke()
-        if (r.y <= r.targetY || r.vy >= 0) {
+        if (r.vy >= -0.4) {
           explode(r)
           rockets.splice(i, 1)
         }
       }
       for (let i = sparks.length - 1; i >= 0; i--) {
         const p = sparks[i]
-        const drag = Math.pow(0.985, k)
+        const drag = Math.pow(0.975, k)
         p.px = p.x
         p.py = p.y
         p.x += p.vx * k
         p.y += p.vy * k
         p.vx *= drag
-        p.vy = p.vy * drag + 0.045 * k
+        p.vy = p.vy * drag + 0.035 * k
         p.life -= p.decay * k
         if (p.life <= 0) {
           sparks.splice(i, 1)
           continue
         }
-        ctx.globalAlpha = Math.min(1, p.life * 1.4)
+        ctx.globalAlpha = Math.min(1, p.life * 1.5)
         ctx.strokeStyle = p.color
-        ctx.lineWidth = 2.2
+        ctx.lineWidth = back ? 2.6 : 1.8
         ctx.beginPath()
-        ctx.moveTo(p.px - p.vx * 2.5, p.py - p.vy * 2.5)
+        ctx.moveTo(p.px - p.vx * 2, p.py - p.vy * 2)
         ctx.lineTo(p.x, p.y)
         ctx.stroke()
       }
       ctx.globalAlpha = 1
-      ctx.globalCompositeOperation = 'source-over'
-
-      if (elapsed < duration + 1500 || rockets.length || sparks.length) raf = requestAnimationFrame(tick)
-      else ctx.clearRect(0, 0, w, h)
+      raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
 
@@ -142,21 +144,45 @@ function Fireworks({ runId, duration = 7000 }) {
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', resize)
     }
-  }, [runId, duration])
+  }, [layer])
 
-  return <canvas ref={ref} className="fireworks" aria-hidden="true" />
+  return <canvas ref={ref} className={`fireworks fw-${layer}`} aria-hidden="true" />
 }
 
-function Diya({ size = 34 }) {
+// ---------- Jhalar (string lights) ----------
+const SEG = 120
+const BULB_T = [0.1, 0.3, 0.5, 0.7, 0.9]
+export function Jhalar({ className = '' }) {
+  if (!isDiwaliTime()) return null
+  return (
+    <div className={`jhalar ${className}`} aria-hidden="true">
+      {Array.from({ length: 22 }).map((_, s) => (
+        <svg key={s} width={SEG} height="46" viewBox={`0 0 ${SEG} 46`}>
+          <path d={`M0 4 Q${SEG / 2} 30 ${SEG} 4`} stroke="#6b5a3a" strokeWidth="1.3" fill="none" />
+          {BULB_T.map((t, i) => {
+            const n = s * BULB_T.length + i
+            const x = SEG * t
+            const y = 4 + 52 * t * (1 - t)
+            return (
+              <g key={i} className="bulb" transform={`translate(${x} ${y})`}
+                style={{ color: BULBS[n % BULBS.length], '--d': `${((n * 7) % 11) * 0.18}s` }}>
+                <rect x="-1.8" y="0" width="3.6" height="3.4" rx="0.8" fill="#6b5a3a" />
+                <circle className="bulb-glow" cx="0" cy="9" r="8" fill="currentColor" />
+                <ellipse cx="0" cy="8.6" rx="3.4" ry="4.6" fill="currentColor" />
+              </g>
+            )
+          })}
+        </svg>
+      ))}
+    </div>
+  )
+}
+
+// ---------- Greeting popup ----------
+function Diya({ size = 40 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" aria-hidden="true" className="diya">
-      <defs>
-        <radialGradient id="diya-glow" cx="50%" cy="40%" r="50%">
-          <stop offset="0" stopColor="#ffe08a" stopOpacity=".9" />
-          <stop offset="1" stopColor="#ffb547" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="20" cy="15" r="13" fill="url(#diya-glow)" />
+      <circle cx="20" cy="15" r="13" fill="#ffd36b" opacity=".25" />
       <path className="diya-flame" d="M20 4c3 5 5 8 5 11a5 5 0 0 1-10 0c0-3 2-6 5-11z" fill="#ffb547" />
       <path d="M20 10c1.4 2.6 2.4 4.1 2.4 5.6a2.4 2.4 0 0 1-4.8 0c0-1.5 1-3 2.4-5.6z" fill="#fff3c4" />
       <path d="M5 24h30c-1.5 7-7.5 11-15 11S6.5 31 5 24z" fill="#a7322a" />
@@ -168,67 +194,85 @@ function Diya({ size = 34 }) {
   )
 }
 
-export default function Diwali() {
+function Greeting() {
   const { t } = useLang()
   const d = t.diwali
-  const [active] = useState(isDiwaliTime)
-  const [open, setOpen] = useState(() => {
-    try {
-      return sessionStorage.getItem('susma-diwali-closed') !== '1'
-    } catch {
-      return true
-    }
-  })
-  const [runId, setRunId] = useState(0)
-
-  const reduced = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    if (!active || reduced) return
-    const id = setTimeout(() => setRunId(1), 900)
-    return () => clearTimeout(id)
-  }, [active, reduced])
-
-  const replay = useCallback(() => {
-    if (!reduced) setRunId((n) => n + 1)
-  }, [reduced])
-
-  const close = () => {
-    setOpen(false)
+    let seen = false
     try {
-      sessionStorage.setItem('susma-diwali-closed', '1')
+      seen = sessionStorage.getItem('susma-diwali-seen') === '1'
     } catch {
       /* ignore */
     }
-  }
+    if (seen) return
+    const show = setTimeout(() => setOpen(true), 1200)
+    return () => clearTimeout(show)
+  }, [])
 
-  if (!active) return null
+  useEffect(() => {
+    if (!open) return
+    try {
+      sessionStorage.setItem('susma-diwali-seen', '1')
+    } catch {
+      /* ignore */
+    }
+    const auto = setTimeout(() => setOpen(false), 9000)
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      clearTimeout(auto)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
 
   return (
-    <>
-      {!reduced && <Fireworks key={runId} runId={runId} />}
-      <AnimatePresence>
-        {open && (
-          <motion.aside
-            className="diwali-card"
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.95 }}
-            transition={{ duration: 0.7, ease, delay: 1.2 }}
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="dw-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setOpen(false)}
+        >
+          <motion.div
+            className="dw-pop"
+            role="dialog"
+            aria-modal="true"
             aria-label={d.title}
+            initial={{ opacity: 0, y: 30, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.6, ease }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <div className="diwali-diyas"><Diya /><Diya size={40} /><Diya /></div>
-            <div className="diwali-text">
-              <b>{d.title}</b>
-              <span>{d.sub}</span>
-            </div>
-            {!reduced && (
-              <button className="diwali-replay" onClick={replay}>🎆 {d.replay}</button>
-            )}
-            <button className="diwali-close" onClick={close} aria-label={d.close}><Icon name="close" size={16} stroke={2} /></button>
-          </motion.aside>
-        )}
-      </AnimatePresence>
+            <button className="dw-close" onClick={() => setOpen(false)} aria-label={d.close}>
+              <Icon name="close" size={18} stroke={2} />
+            </button>
+            <div className="dw-diyas"><Diya size={36} /><Diya size={48} /><Diya size={36} /></div>
+            <h2 className="dw-title">{d.title}</h2>
+            <p className="dw-sub">{d.sub}</p>
+            <p className="dw-sign">{d.sign}</p>
+            <button className="btn btn-coral dw-ok" onClick={() => setOpen(false)}>{d.ok}</button>
+            <div className="dw-border"><Kumbha fill={palette.teal} inner={palette.sindoor} dot={palette.haldi} /></div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+export default function Diwali() {
+  const [active] = useState(isDiwaliTime)
+  const [reduced] = useState(prefersReducedMotion)
+  if (!active) return null
+  return (
+    <>
+      {!reduced && <Fireworks layer="back" />}
+      {!reduced && <Fireworks layer="front" />}
+      <Greeting />
     </>
   )
 }

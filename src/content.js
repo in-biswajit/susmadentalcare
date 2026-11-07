@@ -170,8 +170,9 @@ const en = {
 
   diwali: {
     title: 'Happy Diwali!',
-    sub: "Enjoy the sweets, we'll take care of your smile.",
-    replay: 'Fireworks',
+    sub: "Wishing you and your family a Diwali full of light, sweets and smiles. Enjoy the sweets, we'll take care of your teeth!",
+    sign: 'Dr. Snigdha Singh & team, Susma Dental Care',
+    ok: 'Thank you!',
     close: 'Close greeting',
   },
 
@@ -349,8 +350,9 @@ const or = {
 
   diwali: {
     title: 'ଶୁଭ ଦୀପାବଳି!',
-    sub: 'ମିଠା ଖାଆନ୍ତୁ, ଆପଣଙ୍କ ହସର ଯତ୍ନ ଆମେ ନେବୁ।',
-    replay: 'ଆତସବାଜି',
+    sub: 'ଆପଣ ଓ ଆପଣଙ୍କ ପରିବାରକୁ ଆଲୋକ, ମିଠା ଓ ହସରେ ଭରା ଦୀପାବଳିର ଶୁଭେଚ୍ଛା। ମିଠା ଖାଆନ୍ତୁ, ଦାନ୍ତର ଯତ୍ନ ଆମେ ନେବୁ!',
+    sign: 'ଡାଃ ସ୍ନିଗ୍ଧା ସିଂହ ଓ ଟିମ୍, ସୁଷମା ଡେଣ୍ଟାଲ କେୟାର',
+    ok: 'ଧନ୍ୟବାଦ!',
     close: 'ବନ୍ଦ କରନ୍ତୁ',
   },
 

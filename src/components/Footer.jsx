@@ -1,6 +1,7 @@
 import Icon from './Icon'
 import Logo from './Logo'
 import { SareeBorder } from './Motifs'
+import { Jhalar } from './Diwali'
 import { clinic } from '../data'
 import { useLang } from '../i18n'
 
@@ -11,6 +12,7 @@ export default function Footer() {
   return (
     <>
       <footer className="footer">
+        <Jhalar className="jhalar-footer" />
         <SareeBorder />
         <div className="wrap">
           <div className="foot-top">
