@@ -820,3 +820,10 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
   .dw-sub { font-size: .95rem; }
 }
 @media (prefers-reduced-motion: reduce) { .bulb, .diya-flame, .dw-rangoli, .dw-star, .dw-timer { animation: none; } }
+
+/* Clinic photo inside the hero arch (when clinic.heroPhoto is set) */
+.arch-photo { position: absolute; inset: -6% 0 0; width: 100%; height: 106%; object-fit: cover; object-position: center; }
+.arch:has(.arch-photo)::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: linear-gradient(180deg, rgba(14,42,43,0) 55%, rgba(14,42,43,.35) 100%);
+}

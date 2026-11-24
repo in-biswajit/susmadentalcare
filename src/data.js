@@ -6,6 +6,7 @@
 export const clinic = {
   defaultLang: 'en', // 'en' or 'or' (Odia) — language shown on first visit
   doctorPhoto: '/doctor.webp', // file lives in /public
+  heroPhoto: '', // TODO: clinic photo for the hero arch, e.g. '/hero-clinic.webp' ('' shows the 3D tooth)
   experience: 10, // TODO: years of experience
   patients: 5000, // TODO
   rating: 4.9, // TODO

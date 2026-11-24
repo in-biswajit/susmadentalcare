@@ -20,6 +20,7 @@ export default function Hero() {
   const { scrollY } = useScroll()
   const toothY = useTransform(scrollY, [0, 700], [0, -120])
   const archY = useTransform(scrollY, [0, 700], [0, 60])
+  const photoY = useTransform(scrollY, [0, 700], [0, -40])
 
   useEffect(() => {
     const id = setInterval(() => setW((x) => (x + 1) % h.words.length), 2400)
@@ -88,20 +89,34 @@ export default function Hero() {
             animate={{ clipPath: 'inset(0% 0 0 0 round 999px 999px 40px 40px)' }}
             transition={{ duration: 1.4, ease, delay: 0.3 }}
           >
-            <IkatField className="arch-ikat" color="#ffffff" opacity={0.17} size={60} />
+            {clinic.heroPhoto ? (
+              <motion.img
+                className="arch-photo"
+                src={clinic.heroPhoto}
+                alt={t.name}
+                style={{ y: photoY }}
+                initial={{ scale: 1.15 }}
+                animate={{ scale: 1.05 }}
+                transition={{ duration: 2.2, ease, delay: 0.3 }}
+              />
+            ) : (
+              <IkatField className="arch-ikat" color="#ffffff" opacity={0.17} size={60} />
+            )}
             <div className="arch-anchal">
               <Kumbha fill={palette.cream} inner={palette.sindoor} dot={palette.haldi} />
               <div className="pasapali" />
             </div>
-            <motion.div style={{ y: toothY }} className="tooth-wrap">
-              <motion.div
-                initial={{ scale: 0.6, opacity: 0, rotate: -15 }}
-                animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                transition={{ duration: 1.2, ease, delay: 0.8 }}
-              >
-                <Tooth3D className="tooth-3d" />
+            {!clinic.heroPhoto && (
+              <motion.div style={{ y: toothY }} className="tooth-wrap">
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0, rotate: -15 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  transition={{ duration: 1.2, ease, delay: 0.8 }}
+                >
+                  <Tooth3D className="tooth-3d" />
+                </motion.div>
               </motion.div>
-            </motion.div>
+            )}
           </motion.div>
 
           <div className="spin-badge" aria-hidden="true">
