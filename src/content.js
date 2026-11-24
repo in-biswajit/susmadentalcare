@@ -183,6 +183,7 @@ const en = {
     contact: 'Contact',
     follow: 'Follow',
     top: 'Back to top ↑',
+    visits: 'visits',
     word: 'Susma',
   },
 }
@@ -366,6 +367,7 @@ const or = {
     contact: 'ଯୋଗାଯୋଗ',
     follow: 'ଫଲୋ କରନ୍ତୁ',
     top: 'ଉପରକୁ ଯାଆନ୍ତୁ ↑',
+    visits: 'ଥର ପରିଦର୍ଶନ',
     word: 'ସୁଷମା',
   },
 }

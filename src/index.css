@@ -827,3 +827,8 @@ html[lang="or"] .gal-empty small { letter-spacing: .02em; }
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background: linear-gradient(180deg, rgba(14,42,43,0) 55%, rgba(14,42,43,.35) 100%);
 }
+
+/* Visit counter in the footer */
+.foot-bottom { align-items: center; gap: 12px; flex-wrap: wrap; }
+.visits { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: rgba(19,111,99,.08); color: var(--teal); font-size: .8rem; }
+.visits b { font-weight: 700; color: var(--ink); }

@@ -1,6 +1,7 @@
 import Icon from './Icon'
 import Logo from './Logo'
 import { SareeBorder } from './Motifs'
+import VisitCounter from './VisitCounter'
 import { Jhalar } from './Diwali'
 import { clinic } from '../data'
 import { useLang } from '../i18n'
@@ -41,6 +42,7 @@ export default function Footer() {
           <div className="foot-word" aria-hidden="true">{f.word}</div>
           <div className="foot-bottom">
             <span>© {new Date().getFullYear()} {t.name}</span>
+            <VisitCounter label={f.visits} />
             <a href="#top">{f.top}</a>
           </div>
         </div>
